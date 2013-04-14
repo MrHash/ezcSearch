@@ -247,7 +247,22 @@ class ezcSearchSession
         $def = $this->definitionManager->fetchDefinition( $type );
         return $this->handler->deleteById( $id, $def );
     }
-
+    
+    /**
+     * Deletes all entries from the index
+     *
+     * @throws ezcSearchDefinitionNotFoundxception
+     *         if the object is not recognized as valid document type.
+     * @throws ezcSearchDocumentNotAvailableException if $document is not stored in the database already
+     * @throws ezcSearchQueryException
+     *         if the object could not be deleted.
+     *
+     */
+    public function deleteAll()
+    {
+    	$this->handler->deleteAll();
+    }
+    
     /**
      * Find a document by its ID.
      *

@@ -958,6 +958,22 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $result = $this->sendRawPostCommand( 'update', null, $query->getQuery() );
         $result = json_decode( $result );
     }
+    
+    /**
+     * Deletes all documents
+     *
+     * @throws ezcSearchQueryException
+     *         if the delete query failed.
+     */
+    public function deleteAll()
+    {
+    	$query = "<delete><query>*:*</query></delete>";
+    	$result = $this->sendRawPostCommand( 'update', null, $query);
+    	if ( $this->inTransaction == 0 )
+    	{
+    		$this->runCommit();
+    	}
+    }
 
     /**
      * Finds a document by the document's $id
