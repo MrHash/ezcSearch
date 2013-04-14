@@ -27,6 +27,13 @@ interface ezcBasePersistable
      */
 	 //public function __construct();
 
+	 /**
+	  * Public id accessor for building document index from results
+	  * 
+	  * @return mixed
+	  */
+    public function getId();
+	
     /**
      * Returns all the object's properties so that they can be stored or indexed.
      *
