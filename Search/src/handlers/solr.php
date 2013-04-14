@@ -284,6 +284,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
 
         // read http header
         $line = '';
+        $expectedLength = 0;
         while ( $line != "\r\n" )
         {
             $line = $this->getLine();
