@@ -6,5 +6,8 @@
             "name": "Hash",
             "email": "mr.hash@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "classmap": ["Base/src/", "Search/src/"]
+    }
 }
