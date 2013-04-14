@@ -20,8 +20,12 @@ interface ezcBasePersistable
      * The constructor for the object needs to be able to accept no arguments.
      *
      * The data is later set through the setState() method.
+     * 
+     * Removed from interface to support Doctrine proxies. Ensure that your entities
+     * do not require constructor arguments otherwise generation of entities from index
+     * will fail!!
      */
-    public function __construct();
+	 //public function __construct();
 
     /**
      * Returns all the object's properties so that they can be stored or indexed.
