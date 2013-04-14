@@ -937,6 +937,10 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
     {
         $queryString = "<delete><id>{$id}</id></delete>";
         $this->sendRawPostCommand( 'update', null, $queryString );
+        if ( $this->inTransaction == 0 )
+        {
+            $this->runCommit();
+        }
     }
 
     /**
