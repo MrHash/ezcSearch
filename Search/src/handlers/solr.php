@@ -174,6 +174,9 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
     {
         $statusCode = 0;
         $queryPart = '';
+        
+        $queryString['q'] = str_replace('\\', '\\\\', $queryString['q']);
+        
         if ( count( $queryString ) )
         {
             $queryPart = '/?'. http_build_query( $queryString );
