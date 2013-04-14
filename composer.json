@@ -1,0 +1,10 @@
+{
+    "name": "mrhash/ezc-search",
+    "description": "Repacking of ezComponents legacy search module for use with Doctrine 2 as a Solr adapter.",
+    "authors": [
+        {
+            "name": "Hash",
+            "email": "mr.hash@gmail.com"
+        }
+    ]
+}
