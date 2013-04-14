@@ -187,7 +187,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $cmd .= "Content-Type: text/xml; charset=utf-8\n";
         $cmd .= "\n";
 
-        fwrite( $this->connection, $cmd );
+        @fwrite( $this->connection, $cmd );
 
         // read http header
         $line = '';
@@ -280,7 +280,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $cmd .= "\n";
         $cmd .= $data;
 
-        fwrite( $this->connection, $cmd );
+        @fwrite( $this->connection, $cmd );
 
         // read http header
         $line = '';
