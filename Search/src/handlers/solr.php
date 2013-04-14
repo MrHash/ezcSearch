@@ -837,6 +837,8 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
      */
     public function mapFieldValuesForReturn( $field, $values )
     {
+        $values = (array) $values;
+    	
         if ( $field->multi )
         {
             foreach ( $values as &$value )
