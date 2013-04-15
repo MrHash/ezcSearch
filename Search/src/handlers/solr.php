@@ -910,10 +910,6 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $doc = $xml->outputMemory( true );
 
         $r = $this->sendRawPostCommand( 'update', array( 'wt' => 'json' ), $doc );
-        if ( $this->inTransaction == 0 )
-        {
-            $this->runCommit();
-        }
     }
 
     /**
@@ -946,10 +942,6 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
     {
         $queryString = "<delete><id>{$id}</id></delete>";
         $this->sendRawPostCommand( 'update', null, $queryString );
-        if ( $this->inTransaction == 0 )
-        {
-            $this->runCommit();
-        }
     }
 
     /**
@@ -978,10 +970,6 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
     {
     	$query = "<delete><query>*:*</query></delete>";
     	$result = $this->sendRawPostCommand( 'update', null, $query);
-    	if ( $this->inTransaction == 0 )
-    	{
-    		$this->runCommit();
-    	}
     }
 
     /**
