@@ -91,7 +91,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         // Added the @ here because the connection could be in a broken state,
         // or already be closed. There is no way to check for that properly, so
         // we'll have to use the shut-up operator.
-        @fclose( $this->connection );
+    	  stream_socket_shutdown( $this->connection, STREAM_SHUT_RDWR );
         $this->connect();
     }
 
@@ -187,7 +187,12 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $cmd .= "Content-Type: text/xml; charset=utf-8\n";
         $cmd .= "\n";
 
-        @fwrite( $this->connection, $cmd );
+        if(@fwrite( $this->connection, $cmd ) === 0 ) 
+        {
+        		// Retry on connection failure
+        	   $this->reConnect();
+        	   fwrite( $this->connection, $cmd );
+        }
 
         // read http header
         $line = '';
@@ -280,7 +285,12 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $cmd .= "\n";
         $cmd .= $data;
 
-        @fwrite( $this->connection, $cmd );
+        if(@fwrite( $this->connection, $cmd ) === 0 ) 
+        {
+        		// Retry on connection failure
+        	   $this->reConnect();
+        	   fwrite( $this->connection, $cmd );
+        }
 
         // read http header
         $line = '';
