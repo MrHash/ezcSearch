@@ -316,8 +316,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         // reconnect if necessary
         if ( $reConnect )
         {
-            fclose( $this->connection );
-            $this->connect();
+            $this->reConnect();
         }
 
         // check http status code
